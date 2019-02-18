@@ -30,26 +30,29 @@ export namespace Life {
         Steady = 'steady',
         Hardworking = 'hard-working'
     }
+    export const allAspects: Array<Aspect> =
+        Object.keys(Aspect).map((key: string) => Aspect[key as any] as Aspect);
+    // }
     // 'job'
     export enum Profession {
         Farming = 'farmer',
         Fighting = 'fighter'
     }
+
+    const allProfessions: Array<Profession> =
+        Object.keys(Profession).map((key: string) => Profession[key as any] as Profession);
+    // }
+
     export class System {
         constructor() {
             // ...
         }
         generateAspect(): Aspect {
-            return sample(this.allAspects);
+            return sample(allAspects);
         }
         generateProfession(): Profession {
-            return sample(this.allProfessions);
+            return sample(allProfessions);
         }
-        private get allAspects(): Array<Aspect> {
-            return Object.keys(Aspect).map((key: string) => Aspect[key as any] as Aspect);
-        }
-        private get allProfessions(): Array<Profession> {
-            return Object.keys(Profession).map((key: string) => Profession[key as any] as Profession);
-        }
+        
     }
 }

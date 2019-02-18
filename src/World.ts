@@ -11,7 +11,9 @@ export class World {
     constructor(private name: String) {
         let life = new Life.System();
         this.places = [
-            new Cartography.Place()
+            new Cartography.Place(
+
+            )
         ];
         this.society = new Society(new Language.System(), life);
     }

@@ -3,11 +3,21 @@
 import * as Mundus from './Mundus';
 
 export default class Game {
+    engine: Mundus.Engine
+
     constructor() {
-        console.log("[game] HELLO FROM MUNDUS", Mundus.Engine.version);
+        this.engine = new Mundus.Engine()
     }
 
     play(): any {
-        throw new Error("Game#play -- Method not implemented.");
+        console.log(this.engine.narrate())
+
+        let person = this.engine.exampleIndividual()
+        console.log("My name is", person.name)
+
+        let place = this.engine.exampleLocation()
+        console.log("I hail from", place.name)
+
+        console.log("Would you help us build a village?")
     }
 }

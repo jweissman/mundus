@@ -13,7 +13,6 @@ export class Engine {
 
     constructor(private options: GameConfig = {}) { //
         this.world = new World(options.worldName || 'Terra Incognita')
-        console.log("It's a whole new world!", this.narrate())
     }
 
     narrate(): String {
