@@ -1,21 +1,9 @@
-// export enum Goal {
-//     Power = 'power',
-//     Wealth = 'wealth',
-//     Wisdom = 'knowledge',
-//     Labor = 'work',
-//     Beauty = 'beauty',
-//     // Wonder = 'wonder',
-//     // Dream = 'dream',
-//     // Flight = 'flight',
-//     // Nature = 'nature',
-// }
-
 export enum Idea {
     // power
     Courage = "courageous",
     Honor = "honorable",
-    Potency = "powerful",
-    Strength = "mighty",
+    Dominance = "powerful",
+    Strength = "might",
     Safety = "haven",
 
     // wealth
@@ -33,9 +21,11 @@ export enum Idea {
     Reliable = "reliable",
     Steady = "steady",
     Hardworking = "hardworking",
-    Smith = "smith",
 
     // knowledge
     Bright = "brilliant",
     Sharp = "keen",
 }
+
+export const allIdeas: Idea[] =
+    Object.keys(Idea).map((key: string) => Idea[key as any] as Idea);

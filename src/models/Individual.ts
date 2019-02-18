@@ -1,3 +1,4 @@
+import { capitalize } from "../Util";
 import { Culture } from "./Culture";
 import { Idea } from "./Idea";
 import { Activity } from "./Life";
@@ -16,8 +17,12 @@ export class Individual {
     }
     get description(): string {
         const elements = [this.forename, this.surname];
-        const name = elements.map((word) => this.culture.say(word)).join(" ");
-        return `${name} the ${this.aspect} ${this.job}`;
+        const name = elements.map((word) =>
+            capitalize(
+                this.culture.say(word),
+            ),
+        ).join(" ");
+        return `${name} (${this.forename} ${this.surname}) the ${this.aspect} ${this.job}`;
     }
     public say(idea: Idea): string {
         return this.culture.say(idea);

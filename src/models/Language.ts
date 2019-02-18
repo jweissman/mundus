@@ -1,24 +1,15 @@
-import { sample } from "../Util";
+// tslint:disable:object-literal-sort-keys
+import { sample, sampleOnce } from "../Util";
 import { Idea } from "./Idea";
-import { Konsole } from "../Konsole";
-
-// language model
-
-// export interface IWord {
-//     // writtenForm: string;
-//     meaning: Aspect;
-// }
-
-const allSyllables = [
-];
 
 export class Language {
+
     private roots: string[] = [
         "kat", "phor", "lex", "mix", "shem", "flow",
         "eps", "lyr", "rax", "nel", "mor", "kor", "rus",
         "tar", "los", "mer", "ir",
     ];
-    private stems: string[] = ["a", "ia", "o", "ion", "ea", "ah", "er", "ir", "lie"];
+    private stems: string[] = ["ephon", "a", "ia", "o", "ion", "ea", "ah", "er", "ir", "lie"];
 
     private dictionary = this.makeDictionary();
 
@@ -40,12 +31,11 @@ export class Language {
             wealth: this.generateRoot(),
         };
 
-            // tslint:disable:object-literal-sort-keys
         const dict = {
             courageous: this.generateWord(roots.power),
             honorable: this.generateWord(roots.power),
             powerful: this.generateWord(roots.power),
-            mighty: this.generateWord(roots.power),
+            might: this.generateWord(roots.power),
             haven: this.generateWord(roots.power),
 
             plentiful: this.generateWord(roots.wealth),
@@ -70,7 +60,7 @@ export class Language {
     }
 
     private generateRoot(): string {
-        return sample(this.roots);
+        return sampleOnce(this.roots);
     }
 
     private generateWord(root: string): string {

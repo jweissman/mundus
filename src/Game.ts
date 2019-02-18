@@ -19,7 +19,7 @@ export default class Game {
         this.log("I am", person.description);
 
         const place = this.engine.exampleLocation();
-        this.log("I hail from", place.name, place.description);
+        this.log("I hail from", place.description);
 
         this.log("Would you help us build a village?");
     }

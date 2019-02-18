@@ -1,7 +1,12 @@
-import { sample } from "../Util";
-import { Idea } from "./Idea";
-import { Language } from "./Language";
-import { allAspects } from "./Life";
+import { Konsole } from "../Konsole";
+import { capitalize, sampleOnce } from "../Util";
+import { Culture } from "./Culture";
+import { allIdeas, Idea } from "./Idea";
+
+// enum FeatureKind {
+//     Mountain = "mountain",
+//     Sea = "sea",
+// }
 
 enum Feature {
     Atoll = "atoll",
@@ -21,18 +26,22 @@ export const allFeatures: Feature[] =
     Object.keys(Feature).map((key: string) => Feature[key as any] as Feature);
 
 export class Place {
-    constructor(
-        public name: string,
-        private aspect: Idea = sample(allAspects),
-        private feature: Feature = sample(allFeatures),
-    ) { }
+    private givenName: Idea;
 
-    get description() {
-        return ["the", this.aspect, this.feature].join(" ");
+    constructor(
+        private culture: Culture,
+        private aspect: Idea = sampleOnce(allIdeas),
+        private feature: Feature = sampleOnce(allFeatures),
+    ) {
+        this.givenName = culture.bestowName(this);
+        Konsole.log("a new place was given a name", { name: this.givenName });
     }
 
-    // public sayName(language: Language): string {
-        // return language.write(this.name);
-        // throw new Error("Method not implemented.");
-    // }
+    get description() {
+        return [
+            capitalize(this.culture.say(this.givenName)),
+            `(${this.givenName})`,
+            "the", this.aspect, this.feature,
+        ].join(" ");
+    }
 }

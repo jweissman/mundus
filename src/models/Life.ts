@@ -1,8 +1,5 @@
-import { sample } from "../Util";
-import { Idea } from "./Idea";
-
-export const allAspects: Idea[] =
-    Object.keys(Idea).map((key: string) => Idea[key as any] as Idea);
+import { sampleOnce } from "../Util";
+import { allIdeas, Idea } from "./Idea";
 
 export enum Activity {
     Farming = "farmer",
@@ -15,10 +12,9 @@ const allActivities: Activity[] =
 
 export class Life {
     public generateAspect(): Idea {
-        return sample(allAspects);
+        return sampleOnce(allIdeas);
     }
     public generateActivity(): Activity {
-        return sample(allActivities);
+        return sampleOnce(allActivities);
     }
 }
-// }

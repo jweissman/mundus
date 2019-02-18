@@ -28,15 +28,13 @@ describe("Engine", () => {
 
     it("should describe individuals", () => {
         const person = engine.exampleIndividual();
-        expect(person.description).toMatch(/\w+ \w+/);
+        expect(person.description).toMatch(/[A-Z]\w+ [A-Z]\w+/);
         Konsole.log("Welcome:", person.description);
     });
 
     it("should describe a place", () => {
-        // const elvish: Language = new Language();
         const home: Place = engine.exampleLocation();
         expect(home.description).toMatch(/the \w+ \w+/);
-        expect(home.name).toMatch(/\w+/);
-        Konsole.log("Welcome to", home.name, home.description);
+        Konsole.log("Welcome to", home.description);
     });
 });

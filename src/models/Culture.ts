@@ -1,5 +1,7 @@
-import { sample } from "../Util";
-import { Idea } from "./Idea";
+import { Konsole } from "../Konsole";
+import { sampleOnce } from "../Util";
+import { Place } from "./Cartography";
+import { allIdeas, Idea } from "./Idea";
 import { Individual } from "./Individual";
 import { Language } from "./Language";
 import { Activity, Life } from "./Life";
@@ -16,7 +18,7 @@ export class Culture {
     }
 
     public bestowGivenName(individual: Individual): Idea {
-        return sample([
+        return sampleOnce([
             Idea.Glory,
             Idea.Steady,
             Idea.Shiny,
@@ -24,14 +26,19 @@ export class Culture {
     }
 
     public bestowFamilyName(individual: Individual): Idea {
-        return sample([
-            Idea.Smith,
+        return sampleOnce([
+            // Idea.Smith,
             Idea.Safety,
             Idea.Strength,
         ]);
     }
 
+    public bestowName(entity: Place): Idea {
+        return sampleOnce(allIdeas);
+    }
+
     public say(word: Idea): string {
+        // Konsole.log("trying to say the word", { word });
         return this.language.write(word);
     }
 }
