@@ -1,29 +1,6 @@
-import { Individual } from "./Individual";
-import { World } from "./World";
+import { Konsole } from "./Konsole";
 
+// hello!
+const { log } = Konsole;
 
-interface GameConfig {
-    worldName?: string
-}
-
-export class Engine {
-    private world: World
-
-    static get version() { return '1.0.0' }
-
-    constructor(private options: GameConfig = {}) { //
-        this.world = new World(options.worldName || 'Terra Incognita')
-    }
-
-    narrate(): String {
-        return this.world.describe()
-    }
-
-    exampleIndividual(): Individual {
-        return this.world.randomPerson()
-    }
-
-    exampleLocation(): any {
-        return this.world.randomPlace()
-    }
-}
+log("ave mundus!");

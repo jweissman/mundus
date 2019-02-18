@@ -1,23 +1,28 @@
-// big wrapper class -- maybe integration with excalibur/etc engine goes here?
+import { Engine } from "./Engine";
+import { Konsole } from "./Konsole";
 
-import * as Mundus from './Mundus';
+export interface IGameConfig {
+    worldName?: string;
+}
 
 export default class Game {
-    engine: Mundus.Engine
+    private engine: Engine;
 
     constructor() {
-        this.engine = new Mundus.Engine()
+        this.engine = new Engine();
     }
 
-    play(): any {
-        console.log(this.engine.narrate())
+    public play(): any {
+        this.log(this.engine.narrate());
 
-        let person = this.engine.exampleIndividual()
-        console.log("My name is", person.name)
+        const person = this.engine.exampleIndividual();
+        this.log("I am", person.description);
 
-        let place = this.engine.exampleLocation()
-        console.log("I hail from", place.name)
+        const place = this.engine.exampleLocation();
+        this.log("I hail from", place.name, place.description);
 
-        console.log("Would you help us build a village?")
+        this.log("Would you help us build a village?");
     }
+
+    private log(...args: any[]) { Konsole.log(...args); }
 }

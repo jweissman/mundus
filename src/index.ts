@@ -1,4 +1,4 @@
-import Game from './Game';
+import Game from "./Game";
 
-let game = new Game()
-game.play()
+const game = new Game();
+game.play();
