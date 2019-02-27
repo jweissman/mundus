@@ -1,17 +1,33 @@
 // tslint:disable:object-literal-sort-keys
+import { Konsole } from "../Konsole";
 import { sample, sampleOnce } from "../Util";
 import { Idea } from "./Idea";
 
-export class Language {
+interface IPhonemeGroup {
+    roots: string[];
+    stems: string[];
+}
 
-    private roots: string[] = [
+const simplePhonemes = {
+    roots: [
         "kat", "phor", "lex", "mix", "shem", "flow",
         "eps", "lyr", "rax", "nel", "mor", "kor", "rus",
         "tar", "los", "mer", "ir",
-    ];
-    private stems: string[] = ["ephon", "a", "ia", "o", "ion", "ea", "ah", "er", "ir", "lie"];
+    ],
+    stems: ["ephon", "a", "ia", "o", "ion", "ea", "ah", "er", "ir", "lie"],
+};
 
+export class Language {
     private dictionary = this.makeDictionary();
+    private get roots() { return this.syllables.roots; }
+    private get stems() { return this.syllables.stems; }
+
+    public constructor(
+        public name: string,
+        private syllables: IPhonemeGroup = simplePhonemes,
+    ) {
+        Konsole.log(`New language '${name}' created...`);
+    }
 
     public generateName(): string {
         const root = this.generateRoot();
