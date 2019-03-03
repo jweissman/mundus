@@ -1,4 +1,3 @@
-import { Konsole } from "../Konsole";
 import { sampleOnce } from "../Util";
 import { Place } from "./Cartography";
 import { allIdeas, Idea } from "./Idea";
@@ -18,19 +17,11 @@ export class Culture {
     }
 
     public bestowGivenName(individual: Individual): Idea {
-        return sampleOnce([
-            Idea.Glory,
-            Idea.Steady,
-            Idea.Shiny,
-        ]);
+        return sampleOnce(allIdeas);
     }
 
     public bestowFamilyName(individual: Individual): Idea {
-        return sampleOnce([
-            // Idea.Smith,
-            Idea.Safety,
-            Idea.Strength,
-        ]);
+        return sampleOnce(allIdeas);
     }
 
     public bestowName(entity: Place): Idea {
@@ -38,7 +29,6 @@ export class Culture {
     }
 
     public say(word: Idea): string {
-        // Konsole.log("trying to say the word", { word });
         return this.language.write(word);
     }
 }

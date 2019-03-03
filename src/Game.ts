@@ -1,8 +1,9 @@
 import { Engine } from "./Engine";
 import { Konsole } from "./Konsole";
+import { Idea } from "./models/Idea";
 
 export interface IGameConfig {
-    // worldName?: string;
+    worldNameIdeas?: Idea[];
 }
 
 export default class Game {

@@ -6,9 +6,7 @@ export class Engine {
     private world: World;
     static get version() { return "1.0.0"; }
     constructor(private options: IGameConfig = {}) {
-        this.world = new World(
-            // options.worldName || "Terra Incognita"
-        );
+        this.world = new World(options.worldNameIdeas);
     }
     public narrate(): string {
         return this.world.describe();

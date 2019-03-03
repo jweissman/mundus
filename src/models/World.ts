@@ -12,9 +12,9 @@ export class World {
     private society: Society;
     private places: Place[];
     private commonLanguage: Language;
-    constructor(private nameIdeas: Idea[] = [Idea.Bright]) {
+    constructor(private nameIdeas: Idea[] = ["vast", "beauty"]) {
         const life = new Life();
-        this.commonLanguage = new Language('Common');
+        this.commonLanguage = new Language("Common");
         const majorCulture = new Culture(life, this.commonLanguage);
         this.places = [
             new Place(
@@ -24,10 +24,12 @@ export class World {
             ),
         ];
         this.society = new Society(majorCulture);
+        console.log("Created new world...", this.describe());
     }
 
-    public describe = () => `Welcome to ${this.name}!`;
+    public describe = () => `Welcome to ${this.name} (${this.nameIdeas.join(' ')})!`;
     private get name() {
+        // @ts-ignore
         return this.commonLanguage.say(this.nameIdeas);
     }
 

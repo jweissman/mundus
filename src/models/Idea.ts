@@ -1,31 +1,107 @@
-export enum Idea {
-    // power
-    Courage = "courageous",
-    Honor = "honorable",
-    Dominance = "powerful",
-    Strength = "might",
-    Safety = "haven",
+// @ts-ignore
+const primalThings = <const> ["aurochs", "yew", "ice", "cattle", "need", "gift"];
+type PrimalThing = typeof primalThings[number];
 
-    // wealth
-    Plenty = "plentiful",
-    Shiny = "shining",
-    Glitter = "glittering",
+// @ts-ignore
+export const things = <const>[
+    // ...primalThings,
+    "courage",
+    "honor",
+    "power",
+    "might",
+    "haven",
+    // "cattle",
+    "wealth",
+    "plenty",
+    "shine",
+    "glitter",
+    // "gift",
+    "glimmer",
+    "glory",
+    "inspiration",
+    "height",
+    "beauty",
+    // "need",
+    "labor",
+    "reliability",
+    "steadiness",
+    "energy",
+    // "ice",
+    "stillness",
+    "quiet",
+    "journey",
+    "brilliance",
+    "sharpness"
+    // emptiness...
+];
 
-    // beauty
-    Glimmer = "glimmering",
-    Glory = "glorious",
-    Inspiring = "inspirational",
-    Tall = "high",
+export type Thing =
+    PrimalThing |
+    typeof things[number]
+    ;
 
-    // labor
-    Reliable = "reliable",
-    Steady = "steady",
-    Hardworking = "hardworking",
+// @ts-ignore
+export const aspects = <const>[
+    "wild",
+    
+    "courageous",
+    "honorable",
+    "powerful",
+    "mighty",
+    "careful",
 
-    // knowledge
-    Bright = "brilliant",
-    Sharp = "keen",
-}
+    // "cattle",
+    "tame",
 
-export const allIdeas: Idea[] =
-    Object.keys(Idea).map((key: string) => Idea[key as any] as Idea);
+    "wealthy",
+    "plentiful",
+    "shining",
+    "glittering",
+
+    "blessed",
+    "glimmering",
+    "glorious",
+    "inspiring",
+    "elevated",
+    "beautiful",
+
+    "desperate",
+    "hardworking",
+    "reliable",
+    "steady",
+    "industrious",
+
+    "cold",
+    "still",
+    "silent",
+    "vast",
+    "brilliant",
+    "sharp"
+]
+
+type Aspect = typeof aspects[number];
+
+// okay, so ideas are phrased in noun form, can be 'verbalized' or 'adjectivalized' etc
+//type PrimalIdea =
+//    "aurochs" |
+//    "yew" |
+//    "ice" |
+//    "cattle" |
+//    "need" |
+//    "gift";
+
+export type Idea =
+    PrimalThing |
+    Thing |
+    Aspect
+    ;
+
+export const allIdeas: Idea[] = [
+    ...primalThings,
+    ...things,
+    ...aspects,
+    //"courage",
+    //"honor",
+    //"stillness",
+    //"journey",
+];

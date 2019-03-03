@@ -1,10 +1,19 @@
 import { sampleOnce } from "../Util";
-import { allIdeas, Idea } from "./Idea";
+import { allIdeas, Idea, aspects } from "./Idea";
+
+// type Activity = 'farmer' | 'fight'
 
 export enum Activity {
     Farming = "farmer",
     Fighting = "fighter",
     Praying = "cleric",
+    Healing = "healer",
+    Teaching = "sage",
+    Ruling = "king",
+    Conquering = "soldier",
+    Gambling = "gambler",
+    Playing = "musician",
+    Writing = "scribe",
 }
 
 const allActivities: Activity[] =
@@ -12,7 +21,8 @@ const allActivities: Activity[] =
 
 export class Life {
     public generateAspect(): Idea {
-        return sampleOnce(allIdeas);
+        // @ts-ignore
+        return sampleOnce(aspects);
     }
     public generateActivity(): Activity {
         return sampleOnce(allActivities);
