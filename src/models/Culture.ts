@@ -1,13 +1,12 @@
 import { sampleOnce } from "../Util";
-import { Place } from "./Place";
-import { allIdeas, Idea, allThings, allAspects, Profession, allLandscapeFeatures } from "./Idea";
+import { allAspects, allIdeas, allThings, Idea, Profession } from "./Idea";
 import { Individual } from "./Individual";
 import { Language } from "./Language";
 import { Life } from "./Life";
+import { Place } from "./Place";
 
 export class Culture {
-    
-    static major: Culture = new Culture();
+    public static major: Culture = new Culture();
     constructor(private life: Life = Life.natural, private language: Language = Language.common) { }
 
     public bestowIndividualAspect(profession: Profession = this.bestowProfession()): Idea {
@@ -21,15 +20,15 @@ export class Culture {
     public bestowGivenName(individual: Individual): Idea {
         return sampleOnce([
             ...allAspects,
-        ])
+        ]);
     }
 
-    bestowMidName(individual: Individual): any {
+    public bestowMidName(individual: Individual): any {
         return sampleOnce([
             "humble",
             "steady",
             "industrious",
-        ]); //allAspects);
+        ]); // allAspects);
     }
 
     public bestowFamilyName(individual: Individual): Idea {

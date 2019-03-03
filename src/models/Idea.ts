@@ -1,4 +1,6 @@
-const primalThings = <const>[
+// @ts-ignore
+// tslint:disable-next-line: no-angle-bracket-type-assertion
+const primalThings = <const> [
     "aurochs",
     "cattle",
     "horse",
@@ -16,7 +18,9 @@ const primalThings = <const>[
 ];
 type PrimalThing = typeof primalThings[number];
 
-const landscapeFeatures = <const>[
+// @ts-ignore
+// tslint:disable-next-line: no-angle-bracket-type-assertion
+const landscapeFeatures = <const> [
     "forest",
     "mountain",
     // "marsh",
@@ -26,21 +30,25 @@ const landscapeFeatures = <const>[
     // "ridge",
     // "plain",
     // "taiga",
-]
+];
 export type LandscapeFeature = typeof landscapeFeatures[number];
 
-export const allLandscapeFeatures: LandscapeFeature[] = [...landscapeFeatures]
+export const allLandscapeFeatures: LandscapeFeature[] = [...landscapeFeatures];
 
-const professions = <const>[
+// @ts-ignore
+// tslint:disable-next-line: no-angle-bracket-type-assertion
+const professions = <const> [
     "farmer",
     "fighter",
     // "cleric",
     // "healer",
-]
+];
 export type Profession = typeof professions[number];
 export const allProfessions: Profession[] = [...professions];
 
-const things = <const>[
+// @ts-ignore
+// tslint:disable-next-line: no-angle-bracket-type-assertion
+const things = <const> [
     "courage",
     "honor",
     "power",
@@ -71,6 +79,7 @@ const things = <const>[
     "sharpness",
     // emptiness...
     // "yew",
+    // "spirit",
 ];
 
 export type Thing =
@@ -84,10 +93,12 @@ export const allThings: Thing[] = [
     ...primalThings,
     ...landscapeFeatures,
     ...professions,
-    ...things
-]
+    ...things,
+];
 
-const aspects = <const>[
+// @ts-ignore
+// tslint:disable-next-line: no-angle-bracket-type-assertion
+const aspects = <const> [
     "wild",
     "courageous",
     "honorable",
@@ -120,12 +131,12 @@ const aspects = <const>[
     "silent",
     "vast",
     "brilliant",
-    "sharp"
-]
+    "sharp",
+    // "ethereal",
+];
 
 export type Aspect = typeof aspects[number];
 export const allAspects: Aspect[] = [...aspects];
-
 
 export type Idea =
     PrimalThing |

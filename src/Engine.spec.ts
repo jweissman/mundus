@@ -1,14 +1,14 @@
 import { Engine } from "./Engine";
 import { Konsole } from "./Konsole";
-import { Place } from "./models/Place";
 import { Language } from "./models/Language";
+import { Place } from "./models/Place";
 
 let engine: Engine = null;
 
 describe("Engine", () => {
     beforeEach(() => {
         engine = new Engine({
-            worldNameIdeas: [ 'quiet', 'stillness' ],
+            worldNameIdeas: [ "quiet", "stillness" ],
         });
     });
 
@@ -39,4 +39,9 @@ describe("Engine", () => {
         expect(home.description).toMatch(/the \w+ \w+/);
         Konsole.log("Welcome to", home.description);
     });
+
+    xit("should accept custom class", () => {
+        // engine.generateIndividual('hardworking', 'farmer');
+    });
+    test.todo("should generate events");
 });

@@ -1,10 +1,9 @@
-import { Society } from "./Society";
 import { Culture } from "./Culture";
+import { Society } from "./Society";
 
 describe("Society", () => {
     it("has people", () => {
-        let society = new Society([Culture.major]);
+        const society = new Society([Culture.major]);
         expect(society.individuals.length).toBeGreaterThan(0);
     });
-
-})
+});

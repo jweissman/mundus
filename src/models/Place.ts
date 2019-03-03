@@ -1,7 +1,7 @@
 import { Konsole } from "../Konsole";
 import { capitalize, sampleOnce } from "../Util";
 import { Culture } from "./Culture";
-import { allIdeas, Idea, LandscapeFeature, allLandscapeFeatures, Aspect, allAspects } from "./Idea";
+import { allAspects, allIdeas, allLandscapeFeatures, Aspect, Idea, LandscapeFeature } from "./Idea";
 
 // export const allFeatures: Feature[] = Object.keys(Feature).map((key: string) => Feature[key as any] as Feature);
 

@@ -23,6 +23,11 @@ export default class Game {
         this.log("I am on a journey to", place.description);
 
         this.log("Let's go!!!");
+        // while(true)
+        for (let i = 0; i < 10; i++) {
+            const nextPlace = this.engine.exampleLocation();
+            this.log("We visit ", nextPlace.description, "...");
+        }
     }
 
     private log(...args: any[]) { Konsole.log(...args); }

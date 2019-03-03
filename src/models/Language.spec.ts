@@ -1,5 +1,5 @@
-import { Idea } from "./Idea";
-import { Language } from "./Language";
+import { getEditDistance } from "../Util";
+import { Language, Word } from "./Language";
 
 describe("Language", () => {
     it("has a name", () => {
@@ -7,7 +7,7 @@ describe("Language", () => {
         expect(elvish.name).toBe("Elvish");
     });
 
-    xit("generates names", () => {
+    it("generates names", () => {
         const roots = [ "the" ];
         const stems = [ "re" ];
 
@@ -17,7 +17,14 @@ describe("Language", () => {
         };
 
         const lang = new Language("Computer", syllables);
-        expect(lang.generateName()).toBe("there");
+        let name = lang.generateName();
+        console.log({ name });
+        const dist = getEditDistance(
+            name[0].form,
+            "there",
+        );
+        expect(dist).toBeLessThan(4);
+        // expect(lang.generateName()).toBe("there");
     });
 
     xit("generates random names", () => {
