@@ -12,17 +12,17 @@ describe("Engine", () => {
 
     it("should describe the world", () => {
         const narrative = engine.narrate();
-        const expected = /Welcome to Terra Incognita!/;
+        const expected = /Welcome to (\w+)!/;
         expect(narrative).toMatch(expected);
     });
 
     it("should name the world", () => {
         engine = new Engine({
-            worldName: "Happyvale",
+            // worldName: "Happyvale",
         });
 
         const narrative = engine.narrate();
-        const expected = /Welcome to Happyvale!/;
+        const expected = /Welcome to (\w+)!/;
         expect(narrative).toMatch(expected);
     });
 

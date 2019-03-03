@@ -18,6 +18,7 @@ const simplePhonemes = {
 };
 
 export class Language {
+    
     private dictionary = this.makeDictionary();
     private get roots() { return this.syllables.roots; }
     private get stems() { return this.syllables.stems; }
@@ -36,6 +37,11 @@ export class Language {
 
     public write(idea: Idea): string {
         return this.dictionary[idea];
+    }
+
+    // say handles multiple things???
+    public say(ideas: Idea[]): string {
+        return ideas.map(idea => this.write(idea)).join(' ')
     }
 
     private makeDictionary(): { [key in Idea]: string } {

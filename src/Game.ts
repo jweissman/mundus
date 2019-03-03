@@ -2,7 +2,7 @@ import { Engine } from "./Engine";
 import { Konsole } from "./Konsole";
 
 export interface IGameConfig {
-    worldName?: string;
+    // worldName?: string;
 }
 
 export default class Game {
