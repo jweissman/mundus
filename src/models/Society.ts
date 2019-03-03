@@ -1,20 +1,19 @@
+import { genArray, sampleOnce } from "../Util";
 import { Culture } from "./Culture";
 import { Individual } from "./Individual";
 import { Language } from "./Language";
 import { Life } from "./Life";
-import { sample, sampleOnce } from "../Util";
-// society model
+import { Place } from "./Place";
+
 export class Society {
     private members: Individual[] = [];
-    constructor(...cultures: Culture[]) {
-        // const culture = new Culture(lifeSystem, linguisticSystem);
-        let culture = sampleOnce(cultures);
-        let individual = new Individual(culture);
-        this.populate(individual); //new Individual(sample(cultures));
-    }
-
-    public populate(individual: Individual) {
-        this.members.push(individual);
+    constructor(cultures: Culture[]) {
+        const initialPop = 1;
+        this.members = genArray(initialPop, () => new Individual(
+            new Place(),
+            "farmer",
+            sampleOnce(cultures),
+        ));
     }
 
     get individuals() {

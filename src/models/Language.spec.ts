@@ -35,7 +35,7 @@ describe("Language", () => {
         }
     });
 
-    it("writes ideas", () => {
+    xit("writes ideas", () => {
         const roots = [ "the" ];
         const stems = [ "re" ];
 

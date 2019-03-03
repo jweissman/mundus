@@ -20,9 +20,9 @@ export default class Game {
         this.log("I am", person.description);
 
         const place = this.engine.exampleLocation();
-        this.log("I hail from", place.description);
+        this.log("I am on a journey to", place.description);
 
-        this.log("Would you help us build a village?");
+        this.log("Let's go!!!");
     }
 
     private log(...args: any[]) { Konsole.log(...args); }

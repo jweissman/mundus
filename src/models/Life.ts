@@ -1,30 +1,23 @@
 import { sampleOnce } from "../Util";
-import { allIdeas, Idea, aspects } from "./Idea";
-
-// type Activity = 'farmer' | 'fight'
-
-export enum Activity {
-    Farming = "farmer",
-    Fighting = "fighter",
-    Praying = "cleric",
-    Healing = "healer",
-    Teaching = "sage",
-    Ruling = "king",
-    Conquering = "soldier",
-    Gambling = "gambler",
-    Playing = "musician",
-    Writing = "scribe",
-}
-
-const allActivities: Activity[] =
-    Object.keys(Activity).map((key: string) => Activity[key as any] as Activity);
+import { Idea, allAspects, allProfessions, Profession, Aspect } from "./Idea";
 
 export class Life {
-    public generateAspect(): Idea {
-        // @ts-ignore
+    static natural: Life = new Life();
+    constructor(private professions: Profession[] = allProfessions) {
+    }
+
+    public generateAspect(
+        profession: Profession = this.generateActivity(
+    )): Aspect {
+        let aspects: Aspect[] = [ 'humble' ];
+        switch(profession) {
+            case 'farmer': aspects = ['silent']; break;
+            case 'fighter': aspects = ['sharp', 'wealthy', 'desperate']; break;
+            default: break;
+        }
         return sampleOnce(aspects);
     }
-    public generateActivity(): Activity {
-        return sampleOnce(allActivities);
+    public generateActivity(): Profession {
+        return sampleOnce(this.professions);
     }
 }

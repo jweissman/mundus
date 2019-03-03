@@ -1,10 +1,46 @@
-// @ts-ignore
-const primalThings = <const> ["aurochs", "yew", "ice", "cattle", "need", "gift"];
+const primalThings = <const>[
+    "aurochs",
+    "cattle",
+    "horse",
+
+    "yew",
+    "birch",
+
+    "ice",
+
+    "need",
+    "gift",
+
+    "year",
+    "day",
+];
 type PrimalThing = typeof primalThings[number];
 
-// @ts-ignore
-export const things = <const>[
-    // ...primalThings,
+const landscapeFeatures = <const>[
+    "forest",
+    "mountain",
+    // "marsh",
+    // "valley",
+    // "hill",
+    // "crest",
+    // "ridge",
+    // "plain",
+    // "taiga",
+]
+export type LandscapeFeature = typeof landscapeFeatures[number];
+
+export const allLandscapeFeatures: LandscapeFeature[] = [...landscapeFeatures]
+
+const professions = <const>[
+    "farmer",
+    "fighter",
+    // "cleric",
+    // "healer",
+]
+export type Profession = typeof professions[number];
+export const allProfessions: Profession[] = [...professions];
+
+const things = <const>[
     "courage",
     "honor",
     "power",
@@ -21,6 +57,7 @@ export const things = <const>[
     "inspiration",
     "height",
     "beauty",
+    "humility",
     // "need",
     "labor",
     "reliability",
@@ -31,28 +68,34 @@ export const things = <const>[
     "quiet",
     "journey",
     "brilliance",
-    "sharpness"
+    "sharpness",
     // emptiness...
+    // "yew",
 ];
 
 export type Thing =
     PrimalThing |
+    LandscapeFeature |
+    Profession |
     typeof things[number]
     ;
 
-// @ts-ignore
-export const aspects = <const>[
+export const allThings: Thing[] = [
+    ...primalThings,
+    ...landscapeFeatures,
+    ...professions,
+    ...things
+]
+
+const aspects = <const>[
     "wild",
-    
     "courageous",
     "honorable",
     "powerful",
     "mighty",
     "careful",
 
-    // "cattle",
     "tame",
-
     "wealthy",
     "plentiful",
     "shining",
@@ -64,6 +107,7 @@ export const aspects = <const>[
     "inspiring",
     "elevated",
     "beautiful",
+    "humble",
 
     "desperate",
     "hardworking",
@@ -79,19 +123,13 @@ export const aspects = <const>[
     "sharp"
 ]
 
-type Aspect = typeof aspects[number];
+export type Aspect = typeof aspects[number];
+export const allAspects: Aspect[] = [...aspects];
 
-// okay, so ideas are phrased in noun form, can be 'verbalized' or 'adjectivalized' etc
-//type PrimalIdea =
-//    "aurochs" |
-//    "yew" |
-//    "ice" |
-//    "cattle" |
-//    "need" |
-//    "gift";
 
 export type Idea =
     PrimalThing |
+    LandscapeFeature |
     Thing |
     Aspect
     ;
@@ -100,8 +138,4 @@ export const allIdeas: Idea[] = [
     ...primalThings,
     ...things,
     ...aspects,
-    //"courage",
-    //"honor",
-    //"stillness",
-    //"journey",
 ];

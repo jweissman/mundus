@@ -1,27 +1,39 @@
 import { sampleOnce } from "../Util";
-import { Place } from "./Cartography";
-import { allIdeas, Idea } from "./Idea";
+import { Place } from "./Place";
+import { allIdeas, Idea, allThings, allAspects, Profession, allLandscapeFeatures } from "./Idea";
 import { Individual } from "./Individual";
 import { Language } from "./Language";
-import { Activity, Life } from "./Life";
+import { Life } from "./Life";
 
 export class Culture {
-    constructor(private life: Life, private language: Language) { }
+    
+    static major: Culture = new Culture();
+    constructor(private life: Life = Life.natural, private language: Language = Language.common) { }
 
-    public bestowAspect(): Idea {
-        return this.life.generateAspect();
+    public bestowIndividualAspect(profession: Profession = this.bestowProfession()): Idea {
+        return this.life.generateAspect(profession);
     }
 
-    public bestowProfession(): Activity {
+    public bestowProfession(): Profession {
         return this.life.generateActivity();
     }
 
     public bestowGivenName(individual: Individual): Idea {
-        return sampleOnce(allIdeas);
+        return sampleOnce([
+            ...allAspects,
+        ])
+    }
+
+    bestowMidName(individual: Individual): any {
+        return sampleOnce([
+            "humble",
+            "steady",
+            "industrious",
+        ]); //allAspects);
     }
 
     public bestowFamilyName(individual: Individual): Idea {
-        return sampleOnce(allIdeas);
+        return sampleOnce(allThings);
     }
 
     public bestowName(entity: Place): Idea {

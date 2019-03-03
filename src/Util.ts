@@ -25,3 +25,11 @@ export function sample<T>(arr: T[], n = 1): T | T[] {
 export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export function genArray<T>(n: number, cb: () => T): T[] {
+  let arr: T[] = [];
+  for (let i=0; i<n; i++) {
+    arr.push(cb());
+  }
+  return arr;
+}

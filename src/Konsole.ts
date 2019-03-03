@@ -1,4 +1,9 @@
 export class Konsole {
-    // tslint:disable-next-line:no-console
-    public static log(...msgs: any[]) { console.log("[MUNDUS]", ...msgs); }
+    public static log(...msgs: any[]) {
+        // tslint:disable-next-line:no-console
+        console.debug(
+            "[MUNDUS]",
+            ...msgs,
+        );
+    }
 }

@@ -1,29 +1,47 @@
 import { capitalize } from "../Util";
 import { Culture } from "./Culture";
-import { Idea } from "./Idea";
-import { Activity } from "./Life";
+import { Idea, Profession } from "./Idea";
+import { Place } from "./Place";
 
 // 'psychological' model
 export class Individual {
     private forename: Idea;
+    private midname: Idea;
     private surname: Idea;
     private aspect: Idea;
-    private job: Activity;
-    constructor(private culture: Culture) {
-        this.aspect = culture.bestowAspect();
-        this.job = culture.bestowProfession();
+
+    constructor(
+        private home: Place,
+        private job: Profession = Culture.major.bestowProfession(),
+        private culture: Culture = Culture.major,
+    ) {
+        this.aspect = culture.bestowIndividualAspect(this.job);
         this.forename = culture.bestowGivenName(this);
+        this.midname = culture.bestowMidName(this);
         this.surname = culture.bestowFamilyName(this);
     }
+
+    get name(): Idea[] {
+        const elements = [
+            this.forename,
+            this.midname,
+            this.surname,
+        ];
+        return elements;
+    }
+
     get description(): string {
-        const elements = [this.forename, this.surname];
-        const name = elements.map((word) =>
+        const name = this.name.map((word) =>
             capitalize(
                 this.culture.say(word),
             ),
         ).join(" ");
-        return `${name} (${this.forename} ${this.surname}) the ${this.aspect} ${this.job}`;
+        const meaning = this.name.join(" ");
+        const title = [this.aspect, this.job].join(" ");
+        const origin = this.home.description;
+        return `${name} (${meaning}) the ${title} of ${origin}`;
     }
+
     public say(idea: Idea): string {
         return this.culture.say(idea);
     }

@@ -1,6 +1,6 @@
 import { Engine } from "./Engine";
 import { Konsole } from "./Konsole";
-import { Place } from "./models/Cartography";
+import { Place } from "./models/Place";
 import { Language } from "./models/Language";
 
 let engine: Engine = null;

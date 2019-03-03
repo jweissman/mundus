@@ -1,7 +1,7 @@
 // tslint:disable:object-literal-sort-keys
 import { Konsole } from "../Konsole";
-import { sample, sampleOnce } from "../Util";
-import { Idea, allIdeas, things, Thing, aspects } from "./Idea";
+import { sampleOnce } from "../Util";
+import { Idea, allThings, allAspects } from "./Idea";
 
 interface IPhonemeGroup {
     roots: string[];
@@ -20,16 +20,20 @@ const simplePhonemes = {
     ],
     stems: [
         "ephon", "a", "ia", "o", "ion", "ea", "ah", "er", "ir", "lie",
-        "nan", "az", "giz",
+        "nan", "az", "giz", "qi", "lu", "mu", "ku", "ra", "ie", "eon",
     ],
 };
 
-// primal words are only nouns...
 type PrimalWord = { kind: "noun", idea: Idea, form: string }
 type Word = PrimalWord | { kind: "adjective" | "noun", idea: Idea, form: string }
 
+// const commonDictionary =
+
 export class Language {
+    static common = new Language("Common");
+
     private dictionary: { [key in Idea]: Word } = this.makeDictionary();
+
     private get roots() { return this.syllables.roots; }
     private get stems() { return this.syllables.stems; }
 
@@ -47,11 +51,10 @@ export class Language {
             [ this.noun() ],
             [ this.adjective() ],
         ]);
-        console.log("Created a name: ", { theName })
         return theName;
     }
+
     public write(idea: Idea): string { //idea: Idea): string {
-        console.log("ASKED TO WRITE DOWN IDEA", { idea })
         return this.dictionary[idea].form;
     }
 
@@ -62,13 +65,11 @@ export class Language {
     lookup(idea: Idea): Word { return this.dictionary[idea]; }
 
     private adjective(): Word {
-        // @ts-ignore
-        return this.lookup(sampleOnce(aspects));
+        return this.lookup(sampleOnce(allAspects));
     }
 
     private noun(): Word {
-        // @ts-ignore
-        return this.lookup(sampleOnce(things));
+        return this.lookup(sampleOnce(allThings));
     }
 
     private word(idea: Idea, kind: 'noun' | 'adjective', form: string) {
@@ -94,29 +95,31 @@ export class Language {
             might: this.form(roots.power),
             haven: this.form(roots.power),
 
-            cattle: this.form(roots.wealth),
+            cattle: this.form(roots.wealth, roots.nature),
             plenty: this.form(roots.wealth),
-            shine: this.form(roots.wealth),
+            shine: this.form(roots.wealth, roots.power),
             glitter: this.form(roots.wealth),
 
             gift: this.form(roots.beauty),
             glimmer: this.form(roots.beauty),
             glory: this.form(roots.beauty),
-            inspiration: this.form(roots.beauty),
+            inspiration: this.form(roots.beauty, roots.wealth),
             height: this.form(roots.beauty),
             beauty: roots.beauty,
 
             need: this.form(roots.labor),
             reliability: this.form(roots.labor),
             steadiness: this.form(roots.labor),
-            energy: this.form(roots.labor),
+            energy: this.form(roots.labor, roots.power),
 
             ice: this.form(roots.nature),
             stillness: this.form(roots.nature),
             quiet: this.form(roots.nature),
             journey: this.form(roots.nature),
             brilliance: this.form(roots.nature),
-            sharpness: this.form(roots.nature),
+            sharpness: this.form(roots.nature, roots.power),
+
+            time: this.form(roots.power, roots.labor),
         }
 
         const dict: { [ key in Idea ]: Word } = {
@@ -156,6 +159,8 @@ export class Language {
             inspiring: this.word('inspiring', 'adjective', this.form(forms.inspiration)),
             height: this.word('height', 'noun', forms.height),
             elevated: this.word('elevated', 'adjective', this.form(forms.height)),
+            humble: this.word('humble', 'noun', this.form(forms.height)),
+            humility: this.word('humility', 'adjective', this.form(forms.height)),
 
             need: this.word('need', 'noun', forms.need),
             desperate: this.word('desperate', 'adjective', this.form(forms.need)),
@@ -182,9 +187,19 @@ export class Language {
             sharp: this.word('sharp', 'adjective', this.form(forms.sharpness)),
 
             yew: this.word('yew', 'noun', roots.nature),
+            forest: this.word('forest', 'noun', this.form(roots.nature)),
+            mountain: this.word('forest', 'noun', this.form(forms.height)),
             // sun: this.word('sun', 'noun', this.form(roots.nature)),
+
+            farmer: this.word('farmer', 'noun', this.form(roots.nature, forms.cattle)),
+            fighter: this.word('fighter', 'noun', this.form(forms.stillness, forms.sharpness)),
+            horse: this.word('horse', 'noun', this.form(forms.energy, forms.reliability)),
+            birch: this.word('birch', 'noun', this.form(roots.nature, forms.ice)),
+
+            year: this.word('year', 'noun', this.form(forms.time, roots.nature)),
+            day: this.word('day', 'noun', this.form(forms.time, forms.reliability)),
         };
-        // Konsole.log("making dictionary", { dict });
+        // Konsole.log(`made the dictionary for ${this.name}`, { dict });
         return dict;
     }
 
@@ -192,12 +207,28 @@ export class Language {
         return sampleOnce(this.roots);
     }
 
-    private form(root: string): string {
+    private form(...roots: string[]): string {
+        let stem = sampleOnce(this.stems);
+        return this.streamline(sampleOnce([
+            [ this.streamline([ ...roots, stem ].join("")) ],
+            [ roots[0].slice(0,-1), stem ],
+            [ roots[0].slice(0,-2), stem ],
+            [ stem, roots[0].slice(0,-1) ],
+        ]).join(""));
+    }
+
+    private streamline(form: string): string {
+        // remove duplicate letters? randomly add duplicate 'n', 't'...?
         return sampleOnce([
-            [ root, sampleOnce(this.stems) ],
-            [ root.slice(0,-1), sampleOnce(this.stems) ],
-            [ root.slice(0,-2), sampleOnce(this.stems) ],
-            [ sampleOnce(this.stems), root.slice(0,-1) ],
-        ]).join("");
+            form.slice(0,-2),
+            form.slice(0,-1),
+            form.slice(0,-1),
+            form,
+            form,
+            form,
+            form.slice(1),
+            form.slice(1),
+            form.slice(2),
+        ]);
     }
 }
