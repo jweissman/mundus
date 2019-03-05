@@ -13,22 +13,14 @@ export default class Game {
         this.engine = new Engine();
     }
 
-    public play(): any {
-        this.log(this.engine.narrate());
-
+    public play(): string {
         const person = this.engine.exampleIndividual();
-        this.log("I am", person.description);
-
         const place = this.engine.exampleLocation();
-        this.log("I am on a journey to", place.description);
-
-        this.log("Let's go!!!");
-        // while(true)
-        for (let i = 0; i < 10; i++) {
-            const nextPlace = this.engine.exampleLocation();
-            this.log("We visit ", nextPlace.description, "...");
-        }
+        let message = `I am ${person.description}, `;
+        message += `and I am on a journey to ${place.description}. `;
+        message += "Let's go! ";
+        const anotherPlace = this.engine.exampleLocation();
+        message += `First we will visit ${anotherPlace.description}. `;
+        return message;
     }
-
-    private log(...args: any[]) { Konsole.log(...args); }
 }
