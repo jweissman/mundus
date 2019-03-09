@@ -1,13 +1,13 @@
-import { Konsole } from "../Konsole";
+// tslint:disable: object-literal-sort-keys
+
 import { capitalize, sampleOnce } from "../Util";
 import { makeDictionary } from "./Dictionary";
 import { allAspects, allThings, Idea } from "./Idea";
-import { IPhonemeGroup } from "./IPhonemeGroup";
 import { Word } from "./Word";
 
 const simplePhonemes = {
     roots: [
-        "lyr", "kath", "phor", "lexu", "mixa", "loruz",
+        "lyr", "ith", "mel", "kath", "phor", "lexu", "mixa", "loruz",
         // "shemra", "flowga",
         // "epsul", "lyrah", "raxah", "nella", "morphir", "korel", "russo",
         // "tarel", "lossa", "mer", "iraz",
@@ -16,11 +16,13 @@ const simplePhonemes = {
         // "mannaz", "laguz", "ishaz",
     ],
     stems: [
-        "ephon", "a", "ia", "o", "ion", "ea", "ah", "er", "ir", "lie",
+        "i", "e",
+        // "ephon", "a", "ia", "o", "ion", "ea", "ah", "er", "ir", "lie",
         // "nan", "az", "giz", "qi", "lu", "mu", "ku", "ra", "ie", "eon",
     ],
     leaves: [
-        "ia", "ion", "a",
+        "ie", "il", "el", "al",
+        // "ia", "ion", "a",
     ],
 };
 
@@ -35,11 +37,9 @@ const latinatePhonemes = {
         "ic", "io", "a", "al", "io", "ical", "ite", "itive", "ion",
         "est",
     ],
-// tslint:disable-next-line: object-literal-sort-keys
     leaves: [
         "ae", "am", "eon", "o", "or", "ior", "yr", "os", "on", "e", "ys", "is", "ie",
     ],
-
 };
 
 export class Language {
@@ -47,14 +47,10 @@ export class Language {
     public dictionary: { [key in Idea]: Word } = makeDictionary(
         sampleOnce([latinatePhonemes, simplePhonemes]),
     );
-    // simplePhonemes);
 
     public constructor(
         public name: string,
-        private syllables: IPhonemeGroup = simplePhonemes,
-    ) {
-        // Konsole.log(`New language '${name}' created...`);
-    }
+    ) {}
 
     public generateName(): Word[] {
         const theName = sampleOnce([

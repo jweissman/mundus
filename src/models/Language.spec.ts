@@ -8,18 +8,7 @@ describe("Language", () => {
     });
 
     it("writes ideas", () => {
-        const roots = [ "hel" ];
-        const stems = [ "lo" ];
-        const leaves = [ "wor" ];
-
-        const syllables = {
-            leaves,
-            roots,
-            stems,
-        };
-
-        // every word is related to 'there'
-        const lang = new Language("cpu", syllables);
+        const lang = new Language("cpu");
         expect(lang.write("courage")).toMatch(/(\w+)/);
         expect(lang.write("labor")).toMatch(/(\w+)/);
     });

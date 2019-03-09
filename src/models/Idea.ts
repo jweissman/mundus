@@ -163,6 +163,8 @@ export type Idea =
 
 export const allIdeas: Idea[] = [
     ...primalThings,
+    ...keyIdeas,
+    ...landscapeFeatures,
     ...things,
     ...aspects,
 ];

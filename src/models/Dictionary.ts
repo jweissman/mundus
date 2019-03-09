@@ -9,19 +9,15 @@ type IDictionary = { [key in Idea]: Word };
 
 const streamline = (str: string): string => {
     const streamlineVowels  = (s: string) => s.replace(/[aeiouy]+/gi, (v) => v.slice(0, 2));
+    const streamlineConsonants  = (s: string) => s.replace(/[^aeiouy]+/gi, (v) => v.slice(0, 2));
     const streamlineRepeats = (s: string) => Array.from(new Set(s)).join("");
     // remove repeated characters
-    return streamlineRepeats(streamlineVowels(str));
+    return streamlineRepeats(streamlineConsonants(streamlineVowels(str)));
 };
 
-// const pickRoot = (phonemes: IPhonemeGroup): string => sampleOnce(phonemes.roots);
 const pickForm = (phonemes: IPhonemeGroup, ...roots: string[]): string => {
     return streamline(
-        // sampleOnce([
         [...roots, phonemes.stems[0]].join(phonemes.stems[0]),
-            // sampleOnce(phonemes.stems)),
-            // [ roots[0], sampleOnce(phonemes.stems) ].join(""),
-        // ]),
     );
 };
 
@@ -30,13 +26,12 @@ export function searchDictionary(dictionary: IDictionary, target: Idea): Word {
 }
 
 export function makeDictionary(phonemes: IPhonemeGroup, randomize: boolean = false): IDictionary {
-    // const root = () => pickRoot(phonemes);
     const form = (...rts: string[]) => pickForm(phonemes, ...rts);
     const word = defineWord;
 
     const suffix = {
-        adjective: phonemes.leaves[0], // sampleOnce(phonemes.leaves),
-        noun: phonemes.leaves[1], // sampleOnce(phonemes.leaves),
+        adjective: phonemes.leaves[0],
+        noun: phonemes.leaves[1],
     };
     const noun = (idea: Idea, f: string) => word(idea, "noun",
         streamline([f, suffix.noun].join("")),
