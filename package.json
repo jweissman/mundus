@@ -6,6 +6,9 @@
   "author": "Joseph Weissman",
   "license": "MIT",
   "private": true,
+  "bin": {
+    "mundus": "./bin/index.js"
+  },
   "scripts": {
     "build": "webpack",
     "test": "jest",

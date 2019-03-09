@@ -23,7 +23,7 @@ export class Culture {
         ]);
     }
 
-    public bestowMidName(individual: Individual): any {
+    public bestowMidName(individual: Individual): Idea {
         return sampleOnce([
             "humble",
             "steady",
@@ -41,5 +41,21 @@ export class Culture {
 
     public say(word: Idea): string {
         return this.language.write(word);
+    }
+
+    public bestowIndividualName(
+        individual: Individual,
+        nameOpts: {
+            forename?: Idea,
+            midname?: Idea,
+            surname?: Idea,
+        } = {},
+    ) {
+        const { forename, midname, surname } = nameOpts;
+        return [
+            forename || this.bestowGivenName(individual),
+            midname  || this.bestowMidName(individual),
+            surname  || this.bestowFamilyName(individual),
+        ];
     }
 }

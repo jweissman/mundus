@@ -5,6 +5,7 @@ import { Place } from "./Place";
 
 // 'psychological' model
 export class Individual {
+
     private forename: Idea;
     private midname: Idea;
     private surname: Idea;
@@ -16,9 +17,10 @@ export class Individual {
         private culture: Culture = Culture.major,
     ) {
         this.aspect = culture.bestowIndividualAspect(this.job);
-        this.forename = culture.bestowGivenName(this);
-        this.midname = culture.bestowMidName(this);
-        this.surname = culture.bestowFamilyName(this);
+        const [ forename, midname, surname ] = culture.bestowIndividualName(this);
+        this.forename = forename;
+        this.midname  = midname;
+        this.surname  = surname;
     }
 
     get name(): Idea[] {

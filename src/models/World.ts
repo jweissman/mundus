@@ -7,7 +7,6 @@ import { Language } from "./Language";
 import { Life } from "./Life";
 import { Place } from "./Place";
 import { Society } from "./Society";
-// import { log } from '../Konsole';
 
 export class World {
     private society: Society;
@@ -20,11 +19,11 @@ export class World {
             sampleOnce(allLandscapeFeatures),
         ));
         this.society = new Society([Culture.major]);
-        Konsole.log("Created new world...", this.describe());
+        // Konsole.log("Created new world...", this.describe());
     }
 
-    public describe = () => `Welcome to ${this.name} (${this.nameIdeas.join(" ")})!`;
-    private get name() {
+    public describe = () => `${this.name} (${this.nameIdeas.join(" ")})`;
+    public get name() {
         return Language.common.say(this.nameIdeas);
     }
 

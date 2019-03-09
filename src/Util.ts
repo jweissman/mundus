@@ -91,3 +91,11 @@ export function getEditDistance(a: string, b: string): number {
 
   return matrix[b.length][a.length];
 }
+
+export function zipToObject(array: any[], other: any[]): any {
+  return array.reduce((obj, k, i) => ({ ...obj, [k]: other[i] }), {});
+};
+
+export function shuffle<T>(arr: T[]): T[] {
+  return arr.slice().sort(() => Math.random() > 0.5 ? -1 : 1);
+};

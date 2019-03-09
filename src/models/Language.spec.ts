@@ -1,5 +1,5 @@
 import { getEditDistance } from "../Util";
-import { Language, Word } from "./Language";
+import { Language } from "./Language";
 
 describe("Language", () => {
     it("has a name", () => {
@@ -7,45 +7,13 @@ describe("Language", () => {
         expect(elvish.name).toBe("Elvish");
     });
 
-    it("generates names", () => {
-        const roots = [ "the" ];
-        const stems = [ "re" ];
-
-        const syllables = {
-            roots,
-            stems,
-        };
-
-        const lang = new Language("Computer", syllables);
-        const name = lang.generateName();
-        const dist = getEditDistance(
-            name[0].form,
-            "there",
-        );
-        expect(dist).toBeLessThan(4);
-        // expect(lang.generateName()).toBe("there");
-    });
-
-    xit("generates random names", () => {
-        const roots = ["hel", "wor"];
-        const stems = [ "lo", "ld" ];
-
-        const syllables = {
-            roots,
-            stems,
-        };
-
-        const lang = new Language("Computer", syllables);
-        for (let i = 0; i < 10; i++) {
-            expect(lang.generateName()).toMatch(/(hel|wor)(lo|ld)/);
-        }
-    });
-
     it("writes ideas", () => {
-        const roots = [ "the" ];
-        const stems = [ "re" ];
+        const roots = [ "hel" ];
+        const stems = [ "lo" ];
+        const leaves = [ "wor" ];
 
         const syllables = {
+            leaves,
             roots,
             stems,
         };

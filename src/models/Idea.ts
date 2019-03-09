@@ -20,6 +20,19 @@ type PrimalThing = typeof primalThings[number];
 
 // @ts-ignore
 // tslint:disable-next-line: no-angle-bracket-type-assertion
+const keyIdeas = <const> [
+    "beauty",
+    "knowledge",
+    "labor",
+    "power",
+    "wealth",
+    "nature",
+]
+export type KeyIdea = typeof keyIdeas[number];
+export const allKeyIdeas: KeyIdea[] = [...keyIdeas];
+
+// @ts-ignore
+// tslint:disable-next-line: no-angle-bracket-type-assertion
 const landscapeFeatures = <const> [
     "forest",
     "mountain",
@@ -51,23 +64,24 @@ export const allProfessions: Profession[] = [...professions];
 const things = <const> [
     "courage",
     "honor",
-    "power",
+    // "power",
     "might",
     "haven",
     // "cattle",
-    "wealth",
+    // "wealth",
     "plenty",
     "shine",
     "glitter",
+    "light",
     // "gift",
     "glimmer",
     "glory",
     "inspiration",
     "height",
-    "beauty",
+    // "beauty",
     "humility",
     // "need",
-    "labor",
+    // "labor",
     "reliability",
     "steadiness",
     "energy",
@@ -84,6 +98,7 @@ const things = <const> [
 
 export type Thing =
     PrimalThing |
+    KeyIdea |
     LandscapeFeature |
     Profession |
     typeof things[number]
@@ -91,6 +106,7 @@ export type Thing =
 
 export const allThings: Thing[] = [
     ...primalThings,
+    ...keyIdeas,
     ...landscapeFeatures,
     ...professions,
     ...things,
