@@ -95,7 +95,7 @@
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, ".game {\r\n    padding: 550px;\r\n};\r\n", ""]);
+exports.push([module.i, ".game {\r\n    padding: 50px;\r\n    font-size: 36pt;\r\n    font-family: courier;\r\n    color: white;\r\n    background: black;\r\n};\r\n\r\n.game > div {\r\n    color: green;\r\n}\r\n", ""]);
 
 
 
