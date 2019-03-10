@@ -27,7 +27,7 @@ const keyIdeas = <const> [
     "power",
     "wealth",
     "nature",
-]
+];
 export type KeyIdea = typeof keyIdeas[number];
 export const allKeyIdeas: KeyIdea[] = [...keyIdeas];
 
@@ -36,7 +36,7 @@ export const allKeyIdeas: KeyIdea[] = [...keyIdeas];
 const landscapeFeatures = <const> [
     "forest",
     "mountain",
-    // "marsh",
+    "marsh",
     // "valley",
     // "hill",
     // "crest",
@@ -53,8 +53,7 @@ export const allLandscapeFeatures: LandscapeFeature[] = [...landscapeFeatures];
 const professions = <const> [
     "farmer",
     "fighter",
-    // "cleric",
-    // "healer",
+    "monarch",
 ];
 export type Profession = typeof professions[number];
 export const allProfessions: Profession[] = [...professions];
@@ -149,14 +148,16 @@ const aspects = <const> [
     "brilliant",
     "sharp",
     // "ethereal",
+
+    // kind, honest, good
 ];
 
 export type Aspect = typeof aspects[number];
 export const allAspects: Aspect[] = [...aspects];
 
 export type Idea =
-    PrimalThing |
-    LandscapeFeature |
+    // PrimalThing |
+    // LandscapeFeature |
     Thing |
     Aspect
     ;

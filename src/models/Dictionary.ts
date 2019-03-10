@@ -1,6 +1,6 @@
 // tslint:disable: object-literal-sort-keys
 
-import { sampleOnce, shuffle } from "../Util";
+import { sample, shuffle } from "../Util";
 import { allKeyIdeas, Idea, KeyIdea } from "./Idea";
 import { IPhonemeGroup } from "./IPhonemeGroup";
 import { defineWord, Word } from "./Word";
@@ -8,8 +8,9 @@ import { defineWord, Word } from "./Word";
 type IDictionary = { [key in Idea]: Word };
 
 const streamline = (str: string): string => {
-    const streamlineVowels  = (s: string) => s.replace(/[aeiouy]+/gi, (v) => v.slice(0, 2));
-    const streamlineConsonants  = (s: string) => s.replace(/[^aeiouy]+/gi, (v) => v.slice(0, 2));
+    const repeats = 3;
+    const streamlineVowels  = (s: string) => s.replace(/[aeiouy]+/gi, (v) => v.slice(0, repeats));
+    const streamlineConsonants  = (s: string) => s.replace(/[^aeiouy]+/gi, (v) => v.slice(0, repeats));
     const streamlineRepeats = (s: string) => Array.from(new Set(s)).join("");
     // remove repeated characters
     return streamlineRepeats(streamlineConsonants(streamlineVowels(str)));
@@ -169,6 +170,9 @@ export function makeDictionary(phonemes: IPhonemeGroup, randomize: boolean = fal
 
         knowledge: noun("knowledge", roots.knowledge),
         nature: noun("nature", roots.nature),
+        marsh: noun("marsh", form(roots.nature, forms.stillness)),
+
+        monarch: noun("monarch", form(roots.power, forms.brilliance)),
     };
     // Konsole.log(`made the dictionary for ${this.name}`, { dict });
     return dict;

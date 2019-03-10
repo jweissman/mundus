@@ -1,23 +1,28 @@
-import { capitalize } from "../Util";
+import { capitalize, sample } from "../Util";
 import { Culture } from "./Culture";
-import { Idea, Profession } from "./Idea";
+import { allAspects, allThings, Idea, Profession } from "./Idea";
 import { Place } from "./Place";
 
 // 'psychological' model
 export class Individual {
-
     private forename: Idea;
     private midname: Idea;
     private surname: Idea;
     private aspect: Idea;
 
     constructor(
+        private nameIdeas: Idea[] = [],
         private home: Place,
         private job: Profession = Culture.major.bestowProfession(),
         private culture: Culture = Culture.major,
     ) {
         this.aspect = culture.bestowIndividualAspect(this.job);
-        const [ forename, midname, surname ] = culture.bestowIndividualName(this);
+
+        const [ forename, midname, surname ] = culture.bestowIndividualName(this, {
+            forename: nameIdeas[0] || sample(allAspects),
+            midname: nameIdeas[1] || sample(allAspects),
+            surname: nameIdeas[2] || sample(allThings),
+        });
         this.forename = forename;
         this.midname  = midname;
         this.surname  = surname;

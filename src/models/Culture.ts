@@ -1,4 +1,4 @@
-import { sampleOnce } from "../Util";
+import { sample } from "../Util";
 import { allAspects, allIdeas, allThings, Idea, Profession } from "./Idea";
 import { Individual } from "./Individual";
 import { Language } from "./Language";
@@ -18,13 +18,13 @@ export class Culture {
     }
 
     public bestowGivenName(individual: Individual): Idea {
-        return sampleOnce([
+        return sample([
             ...allAspects,
         ]);
     }
 
     public bestowMidName(individual: Individual): Idea {
-        return sampleOnce([
+        return sample([
             "humble",
             "steady",
             "industrious",
@@ -32,11 +32,11 @@ export class Culture {
     }
 
     public bestowFamilyName(individual: Individual): Idea {
-        return sampleOnce(allThings);
+        return sample(allThings);
     }
 
     public bestowName(entity: Place): Idea {
-        return sampleOnce(allIdeas);
+        return sample(allIdeas);
     }
 
     public say(word: Idea): string {

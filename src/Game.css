@@ -1,0 +1,11 @@
+.game {
+    padding: 50px;
+    font-size: 36pt;
+    font-family: courier;
+    /* color: white; */
+    /* background: black; */
+};
+
+.game div {
+  margin: 50px;
+}

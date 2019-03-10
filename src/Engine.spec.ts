@@ -8,23 +8,20 @@ let engine: Engine = null;
 describe("Engine", () => {
     beforeEach(() => {
         engine = new Engine({
+            rulerNameIdeas: [ "glorious", "humble", "day" ],
             worldNameIdeas: [ "quiet", "stillness" ],
         });
     });
 
     it("should describe the world", () => {
         const narrative = engine.narrate();
-        const expected = /Welcome to (\w+ \w+) \(quiet stillness\)!/;
+        const expected = /This land is (\w+ \w+) \(quiet stillness\)./;
         expect(narrative).toMatch(expected);
     });
 
-    xit("should name the world", () => {
-        engine = new Engine({
-            // worldName: "Happyvale",
-        });
-
+    it("should describe the ruler", () => {
         const narrative = engine.narrate();
-        const expected = /Welcome to (\w+)!/;
+        const expected = /Our ruler is (\w+ \w+ \w+) \(glorious humble day\)./;
         expect(narrative).toMatch(expected);
     });
 

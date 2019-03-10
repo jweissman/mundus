@@ -1,4 +1,4 @@
-import { sampleOnce } from "../Util";
+import { sample } from "../Util";
 import { allAspects, allProfessions, Aspect, Idea, Profession } from "./Idea";
 
 export class Life {
@@ -15,9 +15,9 @@ export class Life {
             case "fighter": aspects = ["sharp", "wealthy", "desperate"]; break;
             default: break;
         }
-        return sampleOnce(aspects);
+        return sample(aspects);
     }
     public generateActivity(): Profession {
-        return sampleOnce(this.professions);
+        return sample(this.professions);
     }
 }

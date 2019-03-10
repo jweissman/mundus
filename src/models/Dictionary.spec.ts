@@ -8,9 +8,9 @@ describe("Dictionary", () => {
             stems: ["o", "ie"],
         };
         const dict = makeDictionary(phonemes);
-        console.log("DICTIONARY", { dict });
+        // console.log("DICTIONARY", { dict });
         expect(searchDictionary(dict, "yew").form).toEqual("fast");
         expect(searchDictionary(dict, "quiet").form).toEqual("faost");
-        expect(searchDictionary(dict, "light").form).toEqual("faotl");
+        expect(searchDictionary(dict, "light").form).toEqual("faotls");
     });
 });

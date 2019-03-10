@@ -14,4 +14,10 @@ module.exports = {
       "json",
       "node"
     ],
-  }
+  "reporters": [
+    "default",
+    ["./node_modules/jest-html-reporter", {
+      "pageTitle": "Mundus Test Results"
+    }]
+  ],
+}

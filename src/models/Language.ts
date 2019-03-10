@@ -1,6 +1,6 @@
 // tslint:disable: object-literal-sort-keys
 
-import { capitalize, sampleOnce } from "../Util";
+import { capitalize, sample } from "../Util";
 import { makeDictionary } from "./Dictionary";
 import { allAspects, allThings, Idea } from "./Idea";
 import { Word } from "./Word";
@@ -31,11 +31,12 @@ const latinatePhonemes = {
         "pulchr", "aqu", "industr", "chron", "ge", "phot", "tant", "natur", "audi", "circ", "jur",
         "manu", "pac", "aut", "graph", "ae", "aeth", "hydr", "log",
         "phil", "phon", "tel", "syn", "schem", "voc", "ex", "in",
-        "bibl",
+        "bibl", "hal", "heg", "hen", "her",
     ],
     stems: [
-        "ic", "io", "a", "al", "io", "ical", "ite", "itive", "ion",
-        "est",
+        "a", "ae", "o",
+        // "ic", "io", "a", "al", "io", "ical", "ite", "itive", "ion",
+        // "est",
     ],
     leaves: [
         "ae", "am", "eon", "o", "or", "ior", "yr", "os", "on", "e", "ys", "is", "ie",
@@ -45,7 +46,8 @@ const latinatePhonemes = {
 export class Language {
     public static common = new Language("Common");
     public dictionary: { [key in Idea]: Word } = makeDictionary(
-        sampleOnce([latinatePhonemes, simplePhonemes]),
+        latinatePhonemes,
+        // sample([latinatePhonemes, simplePhonemes]),
     );
 
     public constructor(
@@ -53,7 +55,7 @@ export class Language {
     ) {}
 
     public generateName(): Word[] {
-        const theName = sampleOnce([
+        const theName = sample([
             [ this.adjective(), this.noun() ],
             [ this.noun() ],
             [ this.adjective() ],
@@ -72,10 +74,10 @@ export class Language {
     public lookup(idea: Idea): Word { return this.dictionary[idea]; }
 
     private adjective(): Word {
-        return this.lookup(sampleOnce(allAspects));
+        return this.lookup(sample(allAspects));
     }
 
     private noun(): Word {
-        return this.lookup(sampleOnce(allThings));
+        return this.lookup(sample(allThings));
     }
 }

@@ -12,7 +12,7 @@ describe("Culture", () => {
         const life = new Life();
         const culture = new Culture(life, common);
 
-        const adam = new Individual(new Place(), "farmer", culture);
+        const adam = new Individual([], new Place(), "farmer", culture);
         expect(culture.bestowIndividualName(adam, {
             forename: "humble",
             midname: "steady",
